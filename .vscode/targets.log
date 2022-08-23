@@ -1,0 +1,882 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sat Aug 13 00:03:50 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 8)
+FREERTOS_DIR := /home/takaite/FreeRTOSv202112.00/FreeRTOS
+# environment
+WSLENV = ELECTRON_RUN_AS_NODE/w:
+# default
+.SHELLFLAGS := -c
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'Makefile', line 73)
+CPPFLAGS := -I. -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/Include -DBUILD_DIR=\"/home/takaite/FreeRTOSv202112.00/IOT011/Demo_5/build\" -D_WINDOWS_ -DTRACE_ON_ENTER=0 -DprojCOVERAGE_TEST=0
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile (from 'Makefile', line 10)
+FREERTOS_PLUS_DIR_REL := ../../FreeRTOS-Plus
+# makefile
+CURDIR := /home/takaite/FreeRTOSv202112.00/IOT011/Demo_5
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 2)
+BIN := demo_5
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"89ebf7d0bb12d1282a52b02d65044dbc.pt-br","_translationsConfigFile":"/home/takaite/.vscode-server/data/clp/89ebf7d0bb12d1282a52b02d65044dbc.pt-br/tcf.json","_cacheRoot":"/home/takaite/.vscode-server/data/clp/89ebf7d0bb12d1282a52b02d65044dbc.pt-br","_resolvedLanguagePackCoreLocation":"/home/takaite/.vscode-server/data/clp/89ebf7d0bb12d1282a52b02d65044dbc.pt-br/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/takaite/.vscode-server/data/clp/89ebf7d0bb12d1282a52b02d65044dbc.pt-br/corrupted.info","_languagePackSupport":true}
+# environment
+_ = /mnt/c/Users/takaite/AppData/Local/Programs/Microsoft VS Code/bin/code
+# makefile (from 'Makefile', line 85)
+CFLAGS := -ggdb3 -O3
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from 'Makefile', line 11)
+FREERTOS_PLUS_DIR := /home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /mnt/c/Users/takaite/AppData/Local/Programs/Microsoft VS Code
+# makefile (from 'Makefile', line 20)
+INCLUDE_DIRS := -I. -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/Include
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'Makefile', line 107)
+OBJ_FILES = $(SOURCE_FILES:%.c=$(BUILD_DIR)/%.o)
+# environment
+PATH = /home/takaite/.vscode-server/bin/6d9b74a70ca9c7733b29f0456fd8195364076dda/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/Users/takaite/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/takaite/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+# makefile (from 'Makefile', line 131)
+GPROF_OPTIONS := --directory-path=-I. -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils -I/home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/include -I/home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/Include
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-856e3225-2988-46ec-81f7-f32e103d39ee.sock
+# makefile (from 'Makefile', line 86)
+LDFLAGS := -ggdb3 -pthread -O3
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# automatic
+%F = $(notdir $%)
+# environment
+PWD = /home/takaite/FreeRTOSv202112.00/IOT011/Demo_5
+# default
+.LOADED := 
+# environment
+WSL_INTEROP = /run/WSL/8_interop
+# makefile (from 'Makefile', line 78)
+SOURCE_FILES := main.c app.c console.c code_coverage_additions.c run-time-stats-utils.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/stream_buffer.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/queue.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/croutine.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/list.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/event_groups.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/tasks.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/timers.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/MemMang/heap_3.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/port.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/AbortDelay.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/BlockQ.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/blocktim.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/countsem.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/death.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/dynamic.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/EventGroupsDemo.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/flop.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/GenQTest.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/integer.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/IntSemTest.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferAMP.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferDemo.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/PollQ.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QPeek.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueOverwrite.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSet.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSetPolling.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/recmutex.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/semtest.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StaticAllocation.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferDemo.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferInterrupt.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TaskNotify.c /home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TimerDemo.c /home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcKernelPort.c /home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcSnapshotRecorder.c /home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcStreamingRecorder.c /home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/File/trcStreamingPort.c
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/takaite
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+LOGNAME = takaite
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 5)
+BUILD_DIR_ABS := /home/takaite/FreeRTOSv202112.00/IOT011/Demo_5/build
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 109)
+DEP_FILE = $(OBJ_FILES:%.o=%.d)
+# environment
+SHLVL = 1
+# makefile (from 'Makefile', line 1)
+CC := gcc
+# makefile (from 'Makefile', line 4)
+BUILD_DIR := ./build
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = takaite
+# makefile
+.DEFAULT_GOAL := all
+# environment
+NAME = Code
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/takaite/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 13)
+KERNEL_DIR := /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile (from 'Makefile', line 7)
+FREERTOS_DIR_REL := ../../FreeRTOS
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+WSL_DISTRO_NAME = Ubuntu
+# environment
+MOTD_SHOWN = update-motd
+# variable set hash-table stats:
+# Load=81/1024=8%, Rehash=0, Collisions=18/265=7%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# /home/takaite/FreeRTOSv202112.00/FreeRTOS/Source (device 2064, inode 77768): 12 files, no impossibilities.
+# . (device 2064, inode 52561): 15 files, no impossibilities.
+
+# 27 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+build/%.o: %.c Makefile
+#  recipe to execute (from 'Makefile', line 120):
+	-mkdir -p $(@D)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -MMD -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/croutine.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QPeek.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/main.o: main.c Makefile
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/main.o
+# automatic
+# % := 
+# automatic
+# * := main
+# automatic
+# + := main.c Makefile
+# automatic
+# | := 
+# automatic
+# < := main.c
+# automatic
+# ^ := main.c Makefile
+# automatic
+# ? := main.c Makefile
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/18=6%
+#  recipe to execute (from 'Makefile', line 120):
+	-mkdir -p $(@D)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -MMD -c $< -o $@
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/timers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/File/trcStreamingPort.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/semtest.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build/run-time-stats-utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcKernelPort.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: demo_5
+ 
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSetPolling.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/AbortDelay.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/MemMang/heap_3.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/demo_5: build/main.o build/app.o build/console.o build/code_coverage_additions.o build/run-time-stats-utils.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/stream_buffer.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/queue.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/croutine.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/list.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/event_groups.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/tasks.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/timers.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/MemMang/heap_3.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/port.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/AbortDelay.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/BlockQ.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/blocktim.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/countsem.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/death.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/dynamic.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/EventGroupsDemo.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/flop.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/GenQTest.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/integer.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/IntSemTest.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferAMP.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferDemo.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/PollQ.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QPeek.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueOverwrite.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSet.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSetPolling.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/recmutex.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/semtest.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StaticAllocation.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferDemo.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferInterrupt.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TaskNotify.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TimerDemo.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcKernelPort.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcSnapshotRecorder.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcStreamingRecorder.o build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/File/trcStreamingPort.o
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 114):
+	-mkdir -p ${@D}
+	$(CC) $^ ${LDFLAGS} -o $@
+
+.PHONY: clean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+demo_5: build/demo_5
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TaskNotify.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/list.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/PollQ.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/BlockQ.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/event_groups.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-12 23:44:08.113265227
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/dynamic.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StaticAllocation.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferDemo.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/flop.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSet.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/countsem.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/integer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-13 00:03:47.333245402
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueOverwrite.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcSnapshotRecorder.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/stream_buffer.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/queue.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcStreamingRecorder.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TimerDemo.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build/app.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/streamports/File/trcStreamingPort.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/code_coverage_additions.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/tasks.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/AbortDelay.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/semtest.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferInterrupt.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferDemo.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/PollQ.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/BlockQ.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/event_groups.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/dynamic.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/death.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferInterrupt.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferDemo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/IntSemTest.d:
+ 
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/EventGroupsDemo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/recmutex.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcSnapshotRecorder.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferAMP.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/stream_buffer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/queue.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/blocktim.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcStreamingRecorder.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TimerDemo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/app.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/console.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build/code_coverage_additions.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 128):
+	-rm -rf $(BUILD_DIR)
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/GenQTest.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/port.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/tasks.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/croutine.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QPeek.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StreamBufferDemo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/death.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/main.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build/run-time-stats-utils.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/timers.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS-Plus/Source/FreeRTOS-Plus-Trace/trcKernelPort.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSetPolling.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/MemMang/heap_3.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/IntSemTest.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/recmutex.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+profile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 133):
+	gprof -a -p --all-lines $(GPROF_OPTIONS) $(BUILD_DIR)/$(BIN) $(BUILD_DIR)/gmon.out > $(BUILD_DIR)/prof_flat.txt
+	gprof -a --graph $(GPROF_OPTIONS) $(BUILD_DIR)/$(BIN) $(BUILD_DIR)/gmon.out > $(BUILD_DIR)/prof_call_graph.txt
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/TaskNotify.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/list.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/MessageBufferAMP.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/EventGroupsDemo.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/StaticAllocation.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/blocktim.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/flop.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueSet.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/countsem.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build/console.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/GenQTest.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/integer.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Source/portable/ThirdParty/GCC/Posix/port.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build//home/takaite/FreeRTOSv202112.00/FreeRTOS/Demo/Common/Minimal/QueueOverwrite.d:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=98/1024=10%, Rehash=0, Collisions=19/209=9%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 127 / storage = 7016 B / avg = 55 B
+# current buf: size = 8162 B / used = 7016 B / count = 127 / avg = 55 B
+
+# strcache performance: lookups = 195 / hit rate = 34%
+# hash-table stats:
+# Load=127/8192=2%, Rehash=0, Collisions=3/195=2%
+# Finished Make data base on Sat Aug 13 00:03:50 2022
+
+ 
