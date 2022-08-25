@@ -13,6 +13,7 @@
 #define TASK1_PRIORITY 1
 #define TASK2_PRIORITY 1
 #define TASK3_PRIORITY 2
+#define TASK4_PRIORITY 2
 
 #define BLACK "\033[30m" /* Black */
 #define RED "\033[31m"   /* Red */
@@ -47,7 +48,8 @@ st_led_param_t red = {
     100};
 
 xTaskHandle notified_hdlr = NULL;
-TaskHandle_t greenTask_hdlr,redTask_hdlr;
+TaskHandle_t greenTask_hdlr,redTask_hdlr,processorTask_hdlr;
+QueueHandle_t structQueue = NULL;
 
 static void prvTask_led(void *pvParameters)
 {
@@ -143,20 +145,31 @@ static void prvTask_getChar(void *pvParameters)
     {
         int stop = 0;
         key = getchar();
-
-        switch (key)
+        if((key==10)||((key>=97)&&(key<=122))||((key>=48)&&(key<=57))) //Filtro de Caracteres
         {
-       
-         case 'k':
-            stop = 1;
-            xTaskNotify(notified_hdlr, 01UL, eSetValueWithOverwrite);    
-            break;
 
-         default:
-            xTaskNotify(notified_hdlr, 00UL, eSetValueWithOverwrite);
-         break;
+            switch (key)
+            {
+                case 'k':
+                stop = 1;
+                break;
+
+                case '/n':
+                if (xQueueSend(structQueue, &key, 0) != pdTRUE)
+                {
+                    vTaskResume(&processorTask_hdlr);
+                }
+                break;
+
+                default:
+                if (xQueueSend(structQueue, &key, 0) != pdTRUE)
+                {       
+                }
+                break;
+            }
         }
         if (stop)
+
         {
             break;
         }
@@ -169,10 +182,45 @@ static void prvTask_getChar(void *pvParameters)
 }
 
 
+static void prvTask_logger(void *pvParameters)
+{
+    (void)pvParameters;
+    char key;
+    const int CURSOR_Y = 4;
+    int cursor_x = 0;
+    for (;;)
+    {      
+        if(structQueue!=NULL)
+        {  
+            if (xQueueReceive(structQueue, &key, portMAX_DELAY) == pdPASS)
+            {
+                gotoxy(cursor_x=cursor_x+2, CURSOR_Y);
+                printf("%c", key);
+                fflush(stdout);
+            }
+            else
+            {      
+            vTaskSuspend(&processorTask_hdlr);
+                //portYIELD();       
+            }
+        }
+    }
+    vTaskDelete(NULL);
+}
+
 
 void app_run(void)
 {
+  
+    structQueue = xQueueCreate(10, // Queue length
+                               1); // Queue item size
 
+    if (structQueue == NULL)
+    {
+        printf("Fail on create queue\n");
+        exit(1);
+    }
+    
     clear();
     DISABLE_CURSOR();
     printf(
@@ -181,8 +229,10 @@ void app_run(void)
         "╚═════════════════╝\n");
 
     xTaskCreate(prvTask_Notified, "Notified", configMINIMAL_STACK_SIZE, NULL, TASK2_PRIORITY, &notified_hdlr);
-    xTaskCreate(prvTask_led, "LED_green", configMINIMAL_STACK_SIZE, &green, TASK1_PRIORITY,  &greenTask_hdlr);
+    xTaskCreate(prvTask_logger, "Logger", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &processorTask_hdlr);
+    //xTaskCreate(prvTask_led, "LED_green", configMINIMAL_STACK_SIZE, &green, TASK1_PRIORITY,  &greenTask_hdlr);
     xTaskCreate(prvTask_led, "LED_Red  ", configMINIMAL_STACK_SIZE, &red, TASK1_PRIORITY,  &redTask_hdlr);
+
     xTaskCreate(prvTask_getChar, "Get_key", configMINIMAL_STACK_SIZE, NULL, TASK3_PRIORITY, NULL);
 
 
