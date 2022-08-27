@@ -18,6 +18,7 @@
 #define TASK3_PRIORITY 2
 #define TASK4_PRIORITY 2
 #define TASK5_PRIORITY 3
+#define TASK6_PRIORITY 3
 
 #define BLACK "\033[30m" /* Black */
 #define RED "\033[31m"   /* Red */
@@ -52,9 +53,11 @@ st_led_param_t red = {
     100};
 
 xTaskHandle notified_hdlr = NULL;
-TaskHandle_t greenTask_hdlr,redTask_hdlr,prvTask_logger_hldr,prvTask_coder_hldr;
+TaskHandle_t greenTask_hdlr,redTask_hdlr,prvTask_logger_hldr,prvTask_coder_hldr,loggerTexto_Task_hdlr;
 QueueHandle_t structQueue = NULL;
 QueueHandle_t structQueue2 = NULL;
+QueueHandle_t structQueue3 = NULL;
+QueueHandle_t structQueue4 = NULL;
 
 static void prvTask_logger(void *pvParameters);
 static void prvTask_coder(void *pvParameters);
@@ -66,35 +69,48 @@ static void prvTask_led(void *pvParameters)
     // pvParameters contains LED params
     st_led_param_t *led = (st_led_param_t *)pvParameters;
     portTickType xLastWakeTime = xTaskGetTickCount();
+    char key;
 
     for (;;)
     {
-        // console_print("@");
-        gotoxy(led->pos, 2);
-        printf("%s⬤", led->color);
-        fflush(stdout);
-           
-        if(led->flag_acesso==1)
+              
+        if (xQueueReceive(structQueue4, &key, pdMS_TO_TICKS(2000)) == pdPASS)
         {
-           led->flag_acesso=0;
-            vTaskSuspend(NULL);            
+            
+            if(key=='.')
+            {
+                gotoxy(led->pos, 2);
+                printf("%s⬤", led->color);
+                fflush(stdout);              
+                vTaskDelay(100 / portTICK_PERIOD_MS);
+
+            }
+
+            if(key=='-')
+            {
+                gotoxy(led->pos, 2);
+                printf("%s⬤", led->color);
+                fflush(stdout); 
+                
+                vTaskDelay(350 / portTICK_PERIOD_MS);
+            }
+
+            gotoxy(led->pos, 2);
+            printf("%s ", BLACK);
+            fflush(stdout);
+            vTaskDelay(500 / portTICK_PERIOD_MS);
+            
+            //}
+             
+
+        }
+        else{
+
+            printf("", led->color);
+            vTaskDelete(NULL);
+
         }
 
-        vTaskDelay(led->period_ms / portTICK_PERIOD_MS);
-        // vTaskDelayUntil(&xLastWakeTime, led->period_ms / portTICK_PERIOD_MS);
-
-        gotoxy(led->pos, 2);
-        printf("%s ", BLACK);
-        fflush(stdout);
-
-        if(led->flag_apagado==1)
-        {
-            xTaskNotify(notified_hdlr, 0UL, eSetValueWithOverwrite);           
-            vTaskSuspend(NULL);
-        }
-
-        //xTaskNotify(notified_hdlr, 0UL, eSetValueWithOverwrite);     
-        vTaskDelay(led->period_ms / portTICK_PERIOD_MS);
     }
 
     vTaskDelete(NULL);
@@ -120,7 +136,8 @@ static void prvTask_Notified(void *pvParameters)
             }
             if (notificationValue == 2)
             {
-                xTaskCreate(prvTask_coder, "Coder", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &prvTask_coder_hldr);
+                xTaskCreate(prvTask_coder, "Coder", configMINIMAL_STACK_SIZE, 8, TASK4_PRIORITY, &prvTask_coder_hldr);
+                xTaskCreate(prvTask_led, "LED_Red  ", configMINIMAL_STACK_SIZE, &red, TASK6_PRIORITY,  &redTask_hdlr);
             }
                       
             else
@@ -169,12 +186,19 @@ static void prvTask_getChar(void *pvParameters)
                 break;
 
                 case 10:
+                    
+                    gotoxy(0, 5);
+                    printf("                                                                                           \n");
                     xTaskNotify(notified_hdlr, 1UL, eSetValueWithOverwrite);
 
                 break;
 
                 default:
                 if (xQueueSend(structQueue, &key, 0) != pdTRUE)
+                {       
+                }
+
+                if (xQueueSend(structQueue3, &key, 0) != pdTRUE)
                 {       
                 }
                 break;
@@ -201,10 +225,10 @@ static void transmit_char(char *chr)
      //   printf("Error");
     }
 
-   //if (xQueueSend(structQueue3, chr, 0) != pdTRUE)
-   // {
+   if (xQueueSend(structQueue4, &chr, 0) != pdTRUE)
+   {
       //  print("Error");
-   // }
+    }
 }
 
 
@@ -566,9 +590,9 @@ static void prvTask_logger(void *pvParameters)
 
 static void prvTask_coder(void *pvParameters)
 {
-    (void)pvParameters;
+    
     char key;
-    const int CURSOR_Y = 5;
+    const int CURSOR_Y = (int  *)pvParameters;
     int cursor_x = 0;
     for (;;)
     {      
@@ -593,25 +617,36 @@ static void prvTask_coder(void *pvParameters)
     vTaskDelete(NULL);
 }
 
+static void prvTask_coder2(void *pvParameters)
+{
+    
+    char key;
+    const int CURSOR_Y = (int  *)pvParameters;
+    int cursor_x = 0;
+    for (;;)
+    {      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
+        if (xQueueReceive(structQueue3, &key, pdMS_TO_TICKS(10000)) == pdPASS)
+        {
+                   
+            printf("                                                                                           \n");
+            gotoxy(cursor_x=cursor_x+2, CURSOR_Y);
+            
+            printf("%c", key);
+            fflush(stdout);
+        }
+        else
+        {      
+          printf("                                                                                           \n");
+          gotoxy(0, CURSOR_Y);
+          printf("");
+            
+        }
+        
+    }
+    vTaskDelete(NULL);
+}
 
 
 
@@ -638,17 +673,24 @@ void app_run(void)
         exit(1);
     }
 
+    structQueue3 = xQueueCreate(100, // Queue length
+                               1); // Queue item size
 
+    if (structQueue2 == NULL)
+    {
+        printf("Fail on create queue\n");
+        exit(1);
+    }
 
+    structQueue4 = xQueueCreate(100, // Queue length
+                               1); // Queue item size
 
+    if (structQueue2 == NULL)
+    {
+        printf("Fail on create queue\n");
+        exit(1);
+    }
 
-
-
-
-
-
-
-    
     clear();
     DISABLE_CURSOR();
     printf(
@@ -657,10 +699,7 @@ void app_run(void)
         "╚═════════════════╝\n");
 
     xTaskCreate(prvTask_Notified, "Notified", configMINIMAL_STACK_SIZE, NULL, TASK2_PRIORITY, &notified_hdlr);
-   // xTaskCreate(prvTask_logger, "Logger", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &processorTask_hdlr);
-    //xTaskCreate(prvTask_led, "LED_green", configMINIMAL_STACK_SIZE, &green, TASK1_PRIORITY,  &greenTask_hdlr);
-    xTaskCreate(prvTask_led, "LED_Red  ", configMINIMAL_STACK_SIZE, &red, TASK1_PRIORITY,  &redTask_hdlr);
-
+    xTaskCreate(prvTask_coder2, "Logger_texto", configMINIMAL_STACK_SIZE, 5, TASK4_PRIORITY, &loggerTexto_Task_hdlr);
     xTaskCreate(prvTask_getChar, "Get_key", configMINIMAL_STACK_SIZE, NULL, TASK3_PRIORITY, NULL);
 
 
