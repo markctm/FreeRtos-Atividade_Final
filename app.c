@@ -1,5 +1,8 @@
+/* Kernel includes. */
+
 #include <stdio.h>
 #include <pthread.h>
+#include <termios.h>
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
@@ -14,6 +17,7 @@
 #define TASK2_PRIORITY 1
 #define TASK3_PRIORITY 2
 #define TASK4_PRIORITY 2
+#define TASK5_PRIORITY 3
 
 #define BLACK "\033[30m" /* Black */
 #define RED "\033[31m"   /* Red */
@@ -48,8 +52,14 @@ st_led_param_t red = {
     100};
 
 xTaskHandle notified_hdlr = NULL;
-TaskHandle_t greenTask_hdlr,redTask_hdlr,processorTask_hdlr;
+TaskHandle_t greenTask_hdlr,redTask_hdlr,prvTask_logger_hldr,prvTask_coder_hldr;
 QueueHandle_t structQueue = NULL;
+QueueHandle_t structQueue2 = NULL;
+
+static void prvTask_logger(void *pvParameters);
+static void prvTask_coder(void *pvParameters);
+static void transmit_char(char *chr);
+
 
 static void prvTask_led(void *pvParameters)
 {
@@ -106,9 +116,13 @@ static void prvTask_Notified(void *pvParameters)
             printf("%s ", GREEN);
             if (notificationValue == 1)
             {
-                printf("Tecla Acionada \n");
-            
+                xTaskCreate(prvTask_logger, "Logger", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &prvTask_logger_hldr);
             }
+            if (notificationValue == 2)
+            {
+                xTaskCreate(prvTask_coder, "Coder", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &prvTask_coder_hldr);
+            }
+                      
             else
             {
                 printf("               \n");
@@ -118,7 +132,7 @@ static void prvTask_Notified(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-#include <termios.h>
+
 
 static void prvTask_getChar(void *pvParameters)
 {
@@ -145,20 +159,18 @@ static void prvTask_getChar(void *pvParameters)
     {
         int stop = 0;
         key = getchar();
-        if((key==10)||((key>=97)&&(key<=122))||((key>=48)&&(key<=57))) //Filtro de Caracteres
+        if((key==10)||(key==42)||(key==32)||((key>=97)&&(key<=122))||((key>=48)&&(key<=57))) //Filtro de Caracteres Permitidos
         {
 
             switch (key)
             {
-                case 'k':
+                case '*':
                 stop = 1;
                 break;
 
-                case '/n':
-                if (xQueueSend(structQueue, &key, 0) != pdTRUE)
-                {
-                    vTaskResume(&processorTask_hdlr);
-                }
+                case 10:
+                    xTaskNotify(notified_hdlr, 1UL, eSetValueWithOverwrite);
+
                 break;
 
                 default:
@@ -169,7 +181,6 @@ static void prvTask_getChar(void *pvParameters)
             }
         }
         if (stop)
-
         {
             break;
         }
@@ -182,37 +193,434 @@ static void prvTask_getChar(void *pvParameters)
 }
 
 
+static void transmit_char(char *chr)
+{
+
+    if (xQueueSend(structQueue2, &chr, 0) != pdTRUE)
+    {
+     //   printf("Error");
+    }
+
+   //if (xQueueSend(structQueue3, chr, 0) != pdTRUE)
+   // {
+      //  print("Error");
+   // }
+}
+
+
 static void prvTask_logger(void *pvParameters)
 {
     (void)pvParameters;
     char key;
+    char caracter;
     const int CURSOR_Y = 4;
     int cursor_x = 0;
     for (;;)
     {      
-        if(structQueue!=NULL)
-        {  
-            if (xQueueReceive(structQueue, &key, portMAX_DELAY) == pdPASS)
-            {
-                gotoxy(cursor_x=cursor_x+2, CURSOR_Y);
-                printf("%c", key);
-                fflush(stdout);
-            }
-            else
-            {      
-            vTaskSuspend(&processorTask_hdlr);
-                //portYIELD();       
-            }
+
+        if (xQueueReceive(structQueue, &key, pdMS_TO_TICKS(400)) == pdPASS)
+        {
+            switch(key)
+                {
+                    case 'a':
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');                      
+                    break;
+                    case 'b':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');  
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');     
+
+                    break;
+                    case 'c':
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');  
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');     
+
+                    break;
+                    case 'd':
+                                 
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');  
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');     
+                    break;
+                    case 'e':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'f':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'g':
+
+                    
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'h':
+
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'i':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'j':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'k':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'l':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'm':
+
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+
+                    break;
+                    case 'n':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'o':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'p':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'q':
+
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'r':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 's':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 't':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'u':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+
+                    break;
+                    case 'v':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case 'w':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+                   
+                    break;
+                    case 'x':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;                  
+                    case 'y':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+                    break;
+                    case 'z':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '0':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '1':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+                    
+                    break;
+                    case '2':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '3':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '4':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)' ');
+
+                    break;                   
+                    case '5':
+
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '6':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;
+                    case '7':
+
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;    
+                    case '8':
+
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+
+                    break;                   
+                    case '9':
+                    
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'-');
+                    transmit_char((char *)'.');
+                    transmit_char((char *)' ');
+                    break;
+
+                    case 32:
+                    
+                    transmit_char((char *)' ');
+                    transmit_char((char *)' ');
+                    break;
+
+                }
+                        
+           // printf("                                                                                           \n");
+           // gotoxy(cursor_x=cursor_x+2, CURSOR_Y);
+            
+           // printf("%c", key);
+           // fflush(stdout);
         }
+        else
+        {      
+           
+           xTaskNotify(notified_hdlr, 2UL, eSetValueWithOverwrite);
+           vTaskDelete(NULL);
+            
+        }
+       // printf("                   \n");
+        
     }
     vTaskDelete(NULL);
 }
 
 
+static void prvTask_coder(void *pvParameters)
+{
+    (void)pvParameters;
+    char key;
+    const int CURSOR_Y = 5;
+    int cursor_x = 0;
+    for (;;)
+    {      
+
+        if (xQueueReceive(structQueue2, &key, pdMS_TO_TICKS(400)) == pdPASS)
+        {
+                   
+            printf("                                                                                           \n");
+            gotoxy(cursor_x=cursor_x+2, CURSOR_Y);
+            
+            printf("%c", key);
+            fflush(stdout);
+        }
+        else
+        {      
+           vTaskDelete(NULL);
+            
+        }
+       // printf("                   \n");
+        
+    }
+    vTaskDelete(NULL);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void app_run(void)
 {
   
-    structQueue = xQueueCreate(10, // Queue length
+    structQueue = xQueueCreate(100, // Queue length
                                1); // Queue item size
 
     if (structQueue == NULL)
@@ -220,6 +628,26 @@ void app_run(void)
         printf("Fail on create queue\n");
         exit(1);
     }
+
+    structQueue2 = xQueueCreate(100, // Queue length
+                               1); // Queue item size
+
+    if (structQueue2 == NULL)
+    {
+        printf("Fail on create queue\n");
+        exit(1);
+    }
+
+
+
+
+
+
+
+
+
+
+
     
     clear();
     DISABLE_CURSOR();
@@ -229,7 +657,7 @@ void app_run(void)
         "╚═════════════════╝\n");
 
     xTaskCreate(prvTask_Notified, "Notified", configMINIMAL_STACK_SIZE, NULL, TASK2_PRIORITY, &notified_hdlr);
-    xTaskCreate(prvTask_logger, "Logger", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &processorTask_hdlr);
+   // xTaskCreate(prvTask_logger, "Logger", configMINIMAL_STACK_SIZE, NULL, TASK4_PRIORITY, &processorTask_hdlr);
     //xTaskCreate(prvTask_led, "LED_green", configMINIMAL_STACK_SIZE, &green, TASK1_PRIORITY,  &greenTask_hdlr);
     xTaskCreate(prvTask_led, "LED_Red  ", configMINIMAL_STACK_SIZE, &red, TASK1_PRIORITY,  &redTask_hdlr);
 
