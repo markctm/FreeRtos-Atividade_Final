@@ -703,7 +703,6 @@ void app_run(void)
     xTaskCreate(prvTask_getChar, "Get_key", configMINIMAL_STACK_SIZE, NULL, TASK3_PRIORITY, NULL);
 
 
-    
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
     vTaskSuspend(&redTask_hdlr);
